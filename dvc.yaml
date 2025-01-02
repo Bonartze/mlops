@@ -1,0 +1,22 @@
+stages:
+  data_download:
+    cmd: C:/Users/alex/AppData/Local/Programs/Python/Python310/python.exe create_tested_data.py
+
+  data_preprocess:
+    cmd: C:/Users/alex/AppData/Local/Programs/Python/Python310/python.exe preprocess_tested_data.py
+    deps:
+      - data/assets_data.csv
+
+  train_model:
+    cmd: C:/Users/alex/AppData/Local/Programs/Python/Python310/python.exe prepare_model.py
+    deps:
+      - data/train_features.csv
+      - data/train_target.csv
+
+  evaluate_model:
+    cmd: C:/Users/alex/AppData/Local/Programs/Python/Python310/python.exe test_model.py
+    deps:
+      - linear_svr_model.pkl
+      - data/test_features.csv
+      - data/test_target.csv
+

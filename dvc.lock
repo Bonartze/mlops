@@ -1,0 +1,37 @@
+schema: '2.0'
+stages:
+  data_download:
+    cmd: C:/Users/alex/AppData/Local/Programs/Python/Python310/python.exe data_creation.py
+  data_preprocess:
+    cmd: C:/Users/alex/AppData/Local/Programs/Python/Python310/python.exe data_preprocessing.py
+    deps:
+    - path: data/assets_data.csv
+      hash: md5
+      md5: 98ea869f2bf162d2cc66067d6b4a42f0
+      size: 916429
+  train_model:
+    cmd: C:/Users/alex/AppData/Local/Programs/Python/Python310/python.exe model_preparation.py
+    deps:
+    - path: data/train_features.csv
+      hash: md5
+      md5: 29ba6b78f07f1093b349952e3450fc33
+      size: 1977034
+    - path: data/train_target.csv
+      hash: md5
+      md5: 9091cc9be01f38faf699cc3be9c3b960
+      size: 100549
+  evaluate_model:
+    cmd: C:/Users/alex/AppData/Local/Programs/Python/Python310/python.exe model_testing.py
+    deps:
+    - path: data/test_features.csv
+      hash: md5
+      md5: 1ab4d820c5701c8c0895830af7408c99
+      size: 54296
+    - path: data/test_target.csv
+      hash: md5
+      md5: 7e8b7c298158b98973f0853f837726ec
+      size: 2803
+    - path: linear_svr_model.pkl
+      hash: md5
+      md5: c36bb45ccfe588bbc3cc77a79df012a4
+      size: 1091
